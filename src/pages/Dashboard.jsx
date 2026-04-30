@@ -432,10 +432,9 @@ export default function Dashboard() {
     { key:"logs",    label:"📋 Logs activité"  },
   ];
 
-  return (
-    if (!configured) return <SetupScreen onSave={() => { setConfigured(true); load(); }} />;
+  if (!configured) return <SetupScreen onSave={() => { setConfigured(true); load(); }} />;
 
-    return (
+  return (
     <div style={{ minHeight:"100vh", background:TK.C, fontFamily:"Outfit,system-ui,sans-serif",
       color:TK.TX }}>
 
