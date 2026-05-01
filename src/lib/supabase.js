@@ -70,6 +70,18 @@ export const db = {
   async delete_(table, id) {
     return req(`/rest/v1/${table}?id=eq.${id}`, { method: "DELETE" });
   },
+  // Supprimer par filtre arbitraire (ex: org_id=eq.xxx)
+  async deleteWhere(table, filter) {
+    return req(`/rest/v1/${table}?${filter}`, { method: "DELETE" });
+  },
+  // Mettre à jour par filtre arbitraire
+  async patchWhere(table, filter, data) {
+    return req(`/rest/v1/${table}?${filter}`, {
+      method: "PATCH",
+      headers: { Prefer: "return=minimal" },
+      body: JSON.stringify(data),
+    });
+  },
   async rpc(fn, params = {}) {
     return req(`/rest/v1/rpc/${fn}`, { method: "POST", body: JSON.stringify(params) });
   },
